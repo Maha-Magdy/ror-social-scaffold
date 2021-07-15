@@ -280,15 +280,22 @@ form {
   margin: 10px;
 
   .users-list li {
-    margin-bottom: 16px;
+    margin-bottom: 30px;
     text-transform: capitalize;
     font-size: 1.2em;
+    padding: 25px;
+    border: 2px solid #689f38;
+    border-radius: 5px;
+    font-weight: bold;
   }
 
-  .profile-link {
+  .btn-link {
     font-size: 0.8em;
-    margin: 0 0 8px 0;
-    color: $primary-color-dark;
+    background-color: #689f38;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
   }
 }
 
