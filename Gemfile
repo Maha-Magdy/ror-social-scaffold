@@ -42,10 +42,18 @@ gem 'devise'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  #  replaces Rails fixtures for generating data to use in the tests.
+  gem 'factory_bot_rails'
+  # provides helper methods that make integration testing easier.
+  gem 'capybara'
+  # allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).
+  gem 'database_cleaner'
+
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'rspec'
+   # provides helper methods that make integration testing easier.
 end
 
 group :development do
