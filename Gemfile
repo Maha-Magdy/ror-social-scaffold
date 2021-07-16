@@ -53,7 +53,7 @@ group :development, :test do
 end
 
 group :test do
-   # provides helper methods that make integration testing easier.
+  # provides helper methods that make integration testing easier.
 end
 
 group :development do
