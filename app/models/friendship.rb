@@ -4,4 +4,6 @@ class Friendship < ApplicationRecord
 
   belongs_to :sender, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
+
+  scope :confirmed_true, -> { where('confirmed=?', true) }
 end

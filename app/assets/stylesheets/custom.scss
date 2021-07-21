@@ -288,15 +288,22 @@ form {
     border-radius: 5px;
     font-weight: bold;
   }
+}
 
-  .btn-link {
-    font-size: 0.8em;
-    background-color: #689f38;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 0 5px;
-  }
+.btn-link {
+  font-size: 0.8em;
+  background-color: #689f38;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.profile-header-block {
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
 }
 
 .user-section {
