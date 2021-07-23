@@ -9,23 +9,23 @@ RSpec.describe Friendship, type: :model do
   second_user.save
 
   describe 'Validations' do
-    describe 'sender_id' do
+    describe 'user_id' do
       it 'must be present' do
         friendship = described_class.new
         expect(friendship).to_not be_valid
       end
     end
 
-    describe 'receiver_id' do
+    describe 'friend_id' do
       it 'must be present' do
         friendship = described_class.new
         expect(friendship).to_not be_valid
       end
     end
 
-    describe 'sender_id and receiver_id' do
+    describe 'user_id and friend_id' do
       it 'must be present' do
-        friendship = described_class.new(sender: first_user, receiver: second_user)
+        friendship = described_class.new(user: first_user, friend: second_user)
         expect(friendship).to be_valid
       end
     end
