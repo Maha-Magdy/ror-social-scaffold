@@ -18,7 +18,6 @@ RSpec.describe Friendship do
 
       visit '/users'
 
-
       expect(page).to have_link('Send Friend Request', href: '/friendships?friend_id=2')
     end
   end

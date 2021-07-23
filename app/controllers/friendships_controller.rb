@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
 
     if @friendship.save
       redirect_to users_path, notice: "Your friend request has been sent to #{@friendship.friend.name}."
-    else 
+    else
       redirect_to users_path, alert: 'Your friend request cannot been sent.'
     end
   end
@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
                                              friend_id: params[:user_id])
     if friendship
       friendship.destroy
-      inverted_friendship.destroy if inverted_friendship
+      inverted_friendship&.destroy
       redirect_to users_path, notice: 'Friendship request has been canceled.'
     else
       redirect_to users_path, alert: 'Friendship request cannot been canceled.'
