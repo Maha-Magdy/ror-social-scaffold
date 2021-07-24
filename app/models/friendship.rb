@@ -8,7 +8,7 @@ class Friendship < ApplicationRecord
   scope :confirmed_true, -> { where('confirmed=?', true) }
 
   def confirm_friend
-    self.update(confirmed: true)
-    Friendship.create!(friend_id: self.user_id, user_id: self.friend_id, confirmed: true)
+    update(confirmed: true)
+    Friendship.create!(friend_id: user_id, user_id: friend_id, confirmed: true)
   end
 end
