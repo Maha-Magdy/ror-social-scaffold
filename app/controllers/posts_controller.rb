@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    ids = current_user.friendships.confirmed_true.map(&:friend_id)
+    ids = current_user.friends.map(&:id)
     ids << current_user.id
     @timeline_posts = Post.where(user_id: ids).ordered_by_most_recent
   end

@@ -10,8 +10,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    friendship = Friendship.find_by(id: params[:id], user_id: params[:user_id],
-                                    friend_id: params[:friend_id])
+    friendship = Friendship.find_by(id: params[:id])
 
     inverted_friendship = Friendship.find_by(id: params[:id], user_id: params[:friend_id],
                                              friend_id: params[:user_id])
@@ -25,10 +24,11 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    friendship = Friendship.find_by(id: params[:id], user_id: params[:user_id], friend_id: current_user)
-    inverted_friendship = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: true)
-    friendship.confirmed = true
-    if friendship.save && inverted_friendship.save
+    friendship = Friendship.find_by(id: params[:id])
+    friendship.confirm_friend
+    # inverted_friendship = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: true)
+    # friendship.confirmed = true
+    if friendship.confirm_friend
       redirect_to users_path, notice: "#{User.find_by(id: friendship.user_id).name} become your friend now"
     else
       redirect_to users_path, alert: 'Something went wrong, and you cannot accept the invitation now'
