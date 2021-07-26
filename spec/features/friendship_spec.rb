@@ -18,9 +18,7 @@ RSpec.describe Friendship do
 
       visit '/users'
 
-      # expect(page).to have_content 'Send Friend Request'
-      # expect(page).to have_css("a", :text => "Send Friend Request")
-      expect(page).to have_link('Send Friend Request', href: '/friendships?receiver_id=2')
+      expect(page).to have_link('Send Friend Request', href: '/friendships?friend_id=2')
     end
   end
 end

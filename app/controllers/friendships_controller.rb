@@ -1,18 +1,22 @@
 class FriendshipsController < ApplicationController
   def create
-    @friendship = Friendship.new(sender_id: current_user[:id], receiver_id: params[:receiver_id], confirmed: false)
+    @friendship = Friendship.new(user_id: current_user[:id], friend_id: params[:friend_id], confirmed: false)
 
     if @friendship.save
-      redirect_to users_path, notice: 'Your friend request has been sent.'
-    else redirect_to users_path, alert: 'Your friend request cannot been sent.'
+      redirect_to users_path, notice: "Your friend request has been sent to #{@friendship.friend.name}."
+    else
+      redirect_to users_path, alert: 'Your friend request cannot been sent.'
     end
   end
 
   def destroy
-    friendship = Friendship.find_by(id: params[:id], sender_id: params[:sender_id],
-                                    receiver_id: params[:receiver_id])
+    friendship = Friendship.find_by(id: params[:id])
+
+    inverted_friendship = Friendship.find_by(id: params[:id], user_id: params[:friend_id],
+                                             friend_id: params[:user_id])
     if friendship
       friendship.destroy
+      inverted_friendship&.destroy
       redirect_to users_path, notice: 'Friendship request has been canceled.'
     else
       redirect_to users_path, alert: 'Friendship request cannot been canceled.'
@@ -20,10 +24,12 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    friendship = Friendship.find_by(id: params[:id], sender_id: params[:sender_id], receiver_id: current_user)
-    friendship.confirmed = true
-    if friendship.save
-      redirect_to users_path, notice: "#{User.find_by(id: friendship.sender_id).name} become your friend now"
+    friendship = Friendship.find_by(id: params[:id])
+    friendship.confirm_friend
+    # inverted_friendship = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: true)
+    # friendship.confirmed = true
+    if friendship.confirm_friend
+      redirect_to users_path, notice: "#{User.find_by(id: friendship.user_id).name} become your friend now"
     else
       redirect_to users_path, alert: 'Something went wrong, and you cannot accept the invitation now'
     end
