@@ -54,6 +54,10 @@ end
 
 group :test do
   # provides helper methods that make integration testing easier.
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'faker'
+  gem 'database_cleaner'
 end
 
 group :development do
