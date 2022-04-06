@@ -61,4 +61,8 @@ Rails.application.configure do
  
   # Devise auth config
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # To configure the format used in responses when errors occur in development mode.
+  # To render an HTML page with debugging information, use the value :default.
+  # config.debug_exception_response_format = :default
 end
