@@ -1,7 +1,9 @@
 class ApiController < ActionController::API
   include Response
   include ExceptionHandler
+  include DeviseTokenAuth::Concerns::SetUserByToken
 
+  before_action :authenticate_user!
   before_action :set_post, only: [:show_comments]
 
   def show_posts
@@ -15,6 +17,14 @@ class ApiController < ActionController::API
   end
 
   def add_comment
+    @comment = Comment.create(post_id: params[:post_id], content: params[:content])
+    @comment.user = current_user
+
+    if @comment.save
+      render json: 'Comment created successfully!'
+    else
+      render json: 'Comment not created!'
+    end
   end
 
   private
