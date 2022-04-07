@@ -49,11 +49,11 @@ end
 
 group :test do
   # provides helper methods that make integration testing easier.
-    #  replaces Rails fixtures for generating data to use in the tests.
+  #  replaces Rails fixtures for generating data to use in the tests.
   gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
   gem 'faker'
-    # allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).
+  gem 'shoulda-matchers'
+  # allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).
   gem 'database_cleaner'
 end
 

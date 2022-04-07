@@ -10,13 +10,13 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
- # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
- Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
-      with.test_framework :rspec
-      with.library :rails
-    end
+# configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
+end
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -43,9 +43,9 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+# rubocop:disable Metrics/BlockLength
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -72,15 +72,13 @@ RSpec.configure do |config|
   config.after(:all) do
     DatabaseCleaner.clean
   end
-
-   # start the transaction strategy as examples are run
+  # start the transaction strategy as examples are run
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
     end
   end
   # ...omitted code...
-
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
@@ -95,14 +93,12 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
   config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers
-
   config.include Devise::Test::ControllerHelpers, type: :controller
 end
+# rubocop:enable Metrics/BlockLength
