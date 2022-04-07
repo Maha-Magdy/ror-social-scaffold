@@ -37,23 +37,24 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'devise'
+gem 'devise_token_auth'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  #  replaces Rails fixtures for generating data to use in the tests.
-  gem 'factory_bot_rails'
   # provides helper methods that make integration testing easier.
   gem 'capybara'
-  # allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).
-  gem 'database_cleaner'
-
   gem 'rspec-rails'
 end
 
 group :test do
   # provides helper methods that make integration testing easier.
+  #  replaces Rails fixtures for generating data to use in the tests.
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  # allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).
+  gem 'database_cleaner'
 end
 
 group :development do
